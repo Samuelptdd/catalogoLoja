@@ -13,3 +13,81 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum ProductType {
+  ROUPA
+  RELOGIO
+}
+
+model Clothe {
+  id          Int      @id @default(autoincrement())
+  mark        String
+  type        String
+  material    String
+  sex         String
+  style       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  suppliers ProductSupplier[] @relation("ClotheProducts")
+  
+  
+  @@map("roupas")
+}
+
+model Clock {
+  id          Int      @id @default(autoincrement())
+  mark        String
+  type        String
+  sex         String
+  description String? 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  suppliers ProductSupplier[] @relation("ClockProducts")
+
+  @@map("relogios")
+}
+
+model Supplier {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products ProductSupplier[]
+  
+  @@map("fornecedores")
+}
+
+model ProductSupplier {
+  id Int @id @default(autoincrement())
+  
+  supplierId Int
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  
+  productType ProductType
+
+  clotheId    Int?
+  clothe      Clothe? @relation("ClotheProducts", fields: [clotheId], references: [id])
+
+  clockId     Int? 
+  clock       Clock? @relation("ClockProducts", fields: [clockId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("fornecedor_produto")
+}
+
+model Admin {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  password    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("admins")
+}
