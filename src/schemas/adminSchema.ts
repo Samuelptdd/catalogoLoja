@@ -18,6 +18,15 @@ export const createAdminSchema = z.object({
 
 export const updateAdminSchema = createAdminSchema.partial();
 
+export const loginAdminSchema = z.object ({
+  email: z
+  .string()
+  .email({message: 'Email deve ter um formato válido!'})
+  .max(100, 'Email deve ter no maximo 100 caracteres'),
+  password: z
+  .string()
+});
+
 //Schema para validação de ID's
 export const idParamSchema = z.object({
   id: z
@@ -28,5 +37,6 @@ export const idParamSchema = z.object({
 });
 
 export type CreateAdminData = z.infer<typeof createAdminSchema>;
-export type updateAdminData = z.infer<typeof updateAdminSchema>;
+export type UpdateAdminData = z.infer<typeof updateAdminSchema>;
+export type LoginAdminData = z.infer<typeof loginAdminSchema>;
 export type IdParam = z.infer<typeof idParamSchema>;

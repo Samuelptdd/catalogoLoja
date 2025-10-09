@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import * as adminService from '../services/adminService';
+import bcrypt from 'bcryptjs'
+import { prisma } from "../database/prisma"
+import { loginAdminSchema, LoginAdminData } from '../schemas/adminSchema';
 
 export const createAdmin = async (req: Request, res: Response) => {
     try{
@@ -49,4 +52,33 @@ export const deleteAdmin = async (req: Request, res: Response) => {
         if (error.code === 'P2025') return res.status(404).json({ message: 'Admin(a) não encontrado(a).' });
         return res.status(500).json({ message: error.message});
     }
+};
+
+export const loginAdmin = async (req: Request, res: Response) => {
+    try{
+        const validation = loginAdminSchema.safeParse(req);
+        if (!validation.success) 
+        return res.status(400).json({ message: "Dados de login invalidos", errors: validation.error.issues});
+        
+        const { email, password } = validation.data as LoginAdminData //.body
+
+        const admin = await prisma.admin.findUnique({ where: {email} });
+        if (!admin) return res.status(401).json({message: "Email ou senha incorretos!"});
+
+        const passwordMatch = await bcrypt.compare(password, admin.password);
+        if(!passwordMatch) return res.status(401).json({message: "Email ou senha incorretos!"});
+
+        return res.status(200).json({ 
+            message: "Login realizado com sucesso!",
+            admin: {
+                id: admin.id,
+                name: admin.name,
+                email: admin.email,
+            }
+        });
+
+    } catch(error: any) {
+        console.error("Erro no login", error);
+        return res.status(500).json({ message: error.message});
+    }  
 };
