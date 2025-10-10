@@ -48,15 +48,17 @@ export const validateParams = (schema: z.ZodType<any>) => {
 // Middleware para validar query parameters
 export const validateQuery = (schema: z.ZodType<any>) => {
   return (req: Request, res: Response, next: NextFunction) => {
+    
     try {
       const validatedQuery = schema.parse(req.query);
       (req as any).query = validatedQuery;
+
       next();
     } catch (error) {
       if (error instanceof ZodError) {
         return res.status(400).json({
           message: "Parâmetros de consulta inválidos",
-          errors: error.issues.map((err: any) => ({
+          errors: error.issues.map((err) => ({
             campo: err.path.join("."),
             mensagem: err.message,
           })),

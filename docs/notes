@@ -1,0 +1,31 @@
+//Pensar em adcionar uma coluna nome para roupas e relogios.
+
+//Adcionar em ClothServices Servcies para buscar pelo tipo, marca, estilo, sexo
+
+/*
+//Encontrar roupas com uma marca especifica
+export const getByMark = async (mark: string) => {
+    return prisma.clothe.findMany({ where: {mark}, include: {suppliers: {include: {supplier: true}}}});
+}
+
+//Encontrar roupas com um tipo especifico
+export const getByType = async (type: string) => {
+    return prisma.clothe.findMany({ where: {type}, include: {suppliers: {include: {supplier: true}}}});
+}
+
+//Encontrar roupas com um material especifico
+export const getByMaterial = async (material: string) => {
+    return prisma.clothe.findMany({ where: {material}, include: {suppliers: {include: {supplier: true}}}});
+}
+
+//Encontrar roupas com um estilo especifica
+export const getByStyle = async (style: string) => {
+    return prisma.clothe.findMany({ where: {style}, include: {suppliers: {include: {supplier: true}}}});
+}
+
+//Encontrar roupas com de um sexo especifico
+export const getBySex = async (sex: string) => {
+    return prisma.clothe.findMany({ where: {sex}});
+}
+
+*/
