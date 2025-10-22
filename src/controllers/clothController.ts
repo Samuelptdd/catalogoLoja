@@ -4,7 +4,7 @@ import * as clothService from '../services/clothService';
 //import { prisma } from "../database/prisma"
 import { ClotheFilterData } from "../schemas/clothSchema";
 
-
+//Controller para criar uma roupa
 export const createCloth = async (req: Request, res: Response) => {
     try{
         const cloth = await clothService.create(req.body);
@@ -15,6 +15,7 @@ export const createCloth = async (req: Request, res: Response) => {
     }
 }; 
 
+//Controller para encontrar todas as roupas
 export const getAllClothes = async (req: Request, res: Response) => {
     try{
         const cloth = await clothService.getAll();
@@ -24,6 +25,7 @@ export const getAllClothes = async (req: Request, res: Response) => {
     }
 };
 
+//Controller para encontrar uma roupa pelo Id
 export const getClothById = async (req: Request, res: Response) => {
     try{
         const cloth = await clothService.getById(Number(req.params.id));
@@ -34,7 +36,7 @@ export const getClothById = async (req: Request, res: Response) => {
     }
 };
 
-
+//Controller para atualizar uma roupa
 export const updateCloth = async (req: Request, res: Response) => {
     try{
         const cloth = await clothService.update(Number(req.params.id), req.body);
@@ -46,6 +48,7 @@ export const updateCloth = async (req: Request, res: Response) => {
     }
 };
 
+//Controller para deletar uma roupa
 export const deleteCloth = async (req: Request, res: Response) => {
     try{
         await clothService.remove(Number(req.params.id));

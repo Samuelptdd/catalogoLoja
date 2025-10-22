@@ -1,47 +1,39 @@
 import { z } from 'zod';
 
-//Schema para criar uma roupa
-export const createClothSchema = z.object({
+//Schema para criar um relogio
+export const createClockSchema = z.object({
     mark: z
     .string()
     .max(50, "Marca deve ter no maximo 50 caracteres!"),
     type: z
     .string()
     .max(50, "Tipo deve ter no maximo 50 caracteres!"),
-    material: z
-    .string()
-    .max(100, "Material deve ter no maximo 50 caracteres!"),
     sex: z
     .string()
     .max(10, "Sexo deve ter no maximo 10 caracteres!"),
-    style: z
-    .string()
-    .max(50, "Estilo deve ter no maximo 50 caracteres!")
-    .optional(),
     description: z
     .string()
     .max(150, "Descrição deve ter no maximo 200 caracteres!")
     .optional()
+
 });
 
-//Schema para atualizar uma roupa
-export const updateClothSchema = createClothSchema.partial();
+//Schema para atualizar um relogio
+export const updateClockSchema = createClockSchema.partial();
 
-//Schema para encontrar uma roupa pelo Id
-export const findClothById = z.object({
+//Schema para encontrar um relogio pelo Id
+export const findClockById = z.object({
     id: z
-    .coerce.number("Id deve ser um numero inteiro")
+    .coerce.number("Id deve ser um numero")
     .int()
 });
 
 //Schema de filtro
 //--------------------------
-export type ClotheFilterData = {
+export type ClockFilterData = {
     mark?: string;
     type?: string;
-    material?: string;
     sex?: string;
-    style?: string;
 };
 
 //Schema para validação de ID's
@@ -53,17 +45,15 @@ export const idParamSchema = z.object({
     .refine((num) => num > 0, "ID deve ser positivo"),
 });
 
-export const clotheFilterSchema: z.ZodType<ClotheFilterData> = z.object({
+export const clockFilterSchema: z.ZodType<ClockFilterData> = z.object({
     mark: z.string().optional(),
     type: z.string().optional(),
-    material: z.string().optional(),
     sex: z.string().optional(),
-    style: z.string().optional(),
 });
 //--------------------------
 
 //exportando os Schemas
-export type CreateClotheData = z.infer<typeof createClothSchema>;
-export type UpdateClotheData = z.infer<typeof updateClothSchema>;
+export type CreateClockData = z.infer<typeof createClockSchema>;
+export type UpdateClockData = z.infer<typeof updateClockSchema>;
 export type IdParam = z.infer<typeof idParamSchema>;
-export type FindClothByIdData = z.infer<typeof findClothById>;
+export type FindClockByIdData = z.infer<typeof findClockById>;

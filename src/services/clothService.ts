@@ -15,7 +15,7 @@ export const getAll = async (): Promise<Clothe[]> =>{
     return prisma.clothe.findMany();
 }
 
-//Encontrar uma roupa pelo id
+//Encontrar uma roupa pelo Id
 export const getById = async (id: number) => {
     return prisma.clothe.findUnique({ where: {id}});
 }
