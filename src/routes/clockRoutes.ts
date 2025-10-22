@@ -18,10 +18,10 @@ import {
 const router = Router();
 
 router.post("./api/clocks", validateBody(createClockSchema), createClock);
-router.get("./api/clothes", getAllClocks);
-router.get("./api/clothes/:id", validateParams(idParamSchema), getClockById);
-router.get("./api/clothes/", validateQuery(clockFilterSchema), listClocks)
-router.put("./api/Clothes/:id", validateParams(idParamSchema), validateBody(updateClockSchema), updateClock);
-router.delete("./api/clothes/:id", validateParams(idParamSchema), deleteClock);
+router.get("./api/clocks", getAllClocks);
+router.get("./api/clocks/:id", validateParams(idParamSchema), getClockById);
+router.get("./api/clocks/", validateQuery(clockFilterSchema), listClocks)
+router.put("./api/clocks/:id", validateParams(idParamSchema), validateBody(updateClockSchema), updateClock);
+router.delete("./api/clocks/:id", validateParams(idParamSchema), deleteClock);
 
 export default router;

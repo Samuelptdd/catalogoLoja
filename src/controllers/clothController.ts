@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import * as clothService from '../services/clothService';
-//import bcrypt from 'bcryptjs'
-//import { prisma } from "../database/prisma"
 import { ClotheFilterData } from "../schemas/clothSchema";
 
 //Controller para criar uma roupa

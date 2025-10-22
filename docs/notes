@@ -1,6 +1,16 @@
 //Pensar em adcionar uma coluna nome para roupas e relogios.
 
-//Adcionar em ClothServices Servcies para buscar pelo tipo, marca, estilo, sexo
+/*
+
+Proximos passos:
+
+- testar os endpoints com postman.
+- adicionar jwt
+- adcionar o que for necessario
+- ultimo teste
+
+*/
+
 
 /*
 //Encontrar roupas com uma marca especifica

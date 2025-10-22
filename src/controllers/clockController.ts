@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import * as clockService from '../services/clockService';
-//import bcrypt from 'bcryptjs'
-//import { prisma } from "../database/prisma"
 import { ClockFilterData } from "../schemas/clockSchema";
 
 //Controller para criar um relogio
