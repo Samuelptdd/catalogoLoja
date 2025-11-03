@@ -17,11 +17,11 @@ import {
 
 const router = Router();
 
-router.post("./api/login", validateBody(loginAdminSchema), loginAdmin);
-router.post("./api/admins", validateBody(createAdminSchema), createAdmin);
-router.get("./api/admins", getAllAdmins);
-router.get("./api/admins/:id", validateParams(idParamSchema), getAdminById);
-router.put("./api/admins/:id", validateParams(idParamSchema), validateBody(updateAdminSchema), updateAdmin);
-router.delete("./api/admins/:id", validateParams(idParamSchema), deleteAdmin);
+router.post("/login", validateBody(loginAdminSchema), loginAdmin);
+router.post("/", validateBody(createAdminSchema), createAdmin);
+router.get("/", getAllAdmins);
+router.get("/:id", validateParams(idParamSchema), getAdminById);
+router.put("/:id", validateParams(idParamSchema), validateBody(updateAdminSchema), updateAdmin);
+router.delete("/:id", validateParams(idParamSchema), deleteAdmin);
 
 export default router;

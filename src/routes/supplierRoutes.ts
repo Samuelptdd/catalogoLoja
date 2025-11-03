@@ -15,10 +15,10 @@ import {
 
 const router = Router();
 
-router.post("./api/suppliers", validateBody(createSupplierSchema), createSupplier);
-router.get("./api/suppliers", getAllSuppliers);
-router.get("./api/suppliers/:id", validateParams(idParamSchema), getSupplierById);
-router.put("./api/supplierss/:id", validateParams(idParamSchema), validateBody(updateSupplierSchema), updateSupplier);
-router.delete("./api/suppliers/:id", validateParams(idParamSchema), deleteSupplier);
+router.post("/", validateBody(createSupplierSchema), createSupplier);
+router.get("/", getAllSuppliers);
+router.get("/:id", validateParams(idParamSchema), getSupplierById);
+router.put("/:id", validateParams(idParamSchema), validateBody(updateSupplierSchema), updateSupplier);
+router.delete("/:id", validateParams(idParamSchema), deleteSupplier);
 
 export default router;

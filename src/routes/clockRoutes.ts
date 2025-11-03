@@ -17,11 +17,11 @@ import {
 
 const router = Router();
 
-router.post("./api/clocks", validateBody(createClockSchema), createClock);
-router.get("./api/clocks", getAllClocks);
-router.get("./api/clocks/:id", validateParams(idParamSchema), getClockById);
-router.get("./api/clocks/", validateQuery(clockFilterSchema), listClocks)
-router.put("./api/clocks/:id", validateParams(idParamSchema), validateBody(updateClockSchema), updateClock);
-router.delete("./api/clocks/:id", validateParams(idParamSchema), deleteClock);
+router.post("/", validateBody(createClockSchema), createClock);
+router.get("/", getAllClocks);
+router.get("/:id", validateParams(idParamSchema), getClockById);
+router.get("/", validateQuery(clockFilterSchema), listClocks)
+router.put("/:id", validateParams(idParamSchema), validateBody(updateClockSchema), updateClock);
+router.delete("/:id", validateParams(idParamSchema), deleteClock);
 
 export default router;

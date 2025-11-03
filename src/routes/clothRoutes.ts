@@ -18,11 +18,11 @@ import {
 
 const router = Router();
 
-router.post("./api/clothes", validateBody(createClothSchema), createCloth);
-router.get("./api/clothes", getAllClothes);
-router.get("./api/clothes/:id", validateParams(idParamSchema), getClothById);
-router.get("./api/clothes/", validateQuery(clotheFilterSchema), listClothes)
-router.put("./api/Clothes/:id", validateParams(idParamSchema), validateBody(updateClothSchema), updateCloth);
-router.delete("./api/clothes/:id", validateParams(idParamSchema), deleteCloth);
+router.post("/", validateBody(createClothSchema), createCloth);
+router.get("/", getAllClothes);
+router.get("/:id", validateParams(idParamSchema), getClothById);
+router.get("/", validateQuery(clotheFilterSchema), listClothes)
+router.put("/:id", validateParams(idParamSchema), validateBody(updateClothSchema), updateCloth);
+router.delete("/:id", validateParams(idParamSchema), deleteCloth);
 
 export default router;
